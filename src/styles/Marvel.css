@@ -1,0 +1,51 @@
+.boton {
+    background-color: #ff9933;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 2rem;
+    cursor: pointer;
+    margin: 10px;
+}
+
+.boton:hover {
+    background-color: #ff6b81;
+}
+
+.cargando {
+    font-size: 2.25rem;
+    color: #ffff99;
+    margin: 20px;
+}
+
+.nombres {
+    font-size: 2.25rem;
+    color: #ffffff;
+    text-decoration: underline;
+}
+
+.info {
+    font-size: 1.75rem;
+}
+
+.personajes-gen {
+    font-size: 1.5rem;
+}
+
+.personajes-det {
+    background-color: rgba(0, 0, 0, 0.7); 
+    padding: 15px;
+    margin: 20px auto;
+    width: 80%;
+    max-width: 400px;
+    border-radius: 10px; 
+    box-shadow: 0px 4px 8px rgba(244, 11, 11, 0.3); 
+    color: #ffffff;
+    font-size: 1.35rem;
+    line-height: 1.5;
+    text-align: center;
+}
+
+.personajes-det:hover {
+    box-shadow: 0px 4px 8px #ff9933;
+}

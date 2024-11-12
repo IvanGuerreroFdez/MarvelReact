@@ -63,6 +63,20 @@
     box-shadow: 0px 4px 8px #ff9933;
 } */
 
+.boton-filtros {
+    background-color: #ff9933;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    margin: 10px;
+}
+
+.filtro {
+    font-size: 1rem;
+}
+
 /* Querys */
 @media (max-width: 768px) {
     .nombres {

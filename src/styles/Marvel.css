@@ -49,3 +49,37 @@
 .personajes-det:hover {
     box-shadow: 0px 4px 8px #ff9933;
 }
+
+.character-image {
+    background-color: rgba(0, 0, 0, 0.7);
+    box-shadow: 0px 4px 8px rgba(244, 11, 11, 0.3);
+    width: 100px;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+/* .character-image:hover {
+    box-shadow: 0px 4px 8px #ff9933;
+} */
+
+/* Querys */
+@media (max-width: 768px) {
+    .nombres {
+      font-size: 1.5rem;
+    }
+  
+    .info, .personajes-gen, .personajes-det {
+      font-size: 1.2rem;
+      padding: 10px;
+    }
+  
+    .character-image {
+      width: 80px;
+    }
+  
+    .favs-detallado, .comics-detallado {
+      width: 90%;
+      margin: 0 auto;
+    }
+}

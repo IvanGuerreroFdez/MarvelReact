@@ -7,12 +7,12 @@ const publicKey = 'b513e6ca226166db85d570f258cb0737';
 const privateKey = 'e1ee2f956b5401fc6dac804a5ecd9a4fd3de8d9f';
 
 const ts = new Date().getTime();
-const hash = md5(ts + privateKey + publicKey);
+const hash = md5(ts + privateKey + publicKey); //hash de verificacion
 
 function Comics ({onComicSelect})  {
   const [comics, setComics] = useState([]);
   const [error, setError] = useState(null);
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(0); //indice del comic actual
 
   useEffect(() => {
     const fetchComics = async () => {
@@ -21,7 +21,7 @@ function Comics ({onComicSelect})  {
           `https://gateway.marvel.com/v1/public/comics?orderBy=modified&ts=${ts}&apikey=${publicKey}&hash=${hash}`
         );
         
-        setComics(response.data.data.results);
+        setComics(response.data.data.results); //guardado de resultados
       } 
       catch (error) {
         console.error("Informacion del comic no obtenida", error);
@@ -33,11 +33,11 @@ function Comics ({onComicSelect})  {
   }, []); 
 
   const handleNext = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % comics.length);
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % comics.length); //next comic
   };
 
   const handlePrevious = () => {
-    setCurrentIndex((prevIndex) => (prevIndex - 1 + comics.length) % comics.length);
+    setCurrentIndex((prevIndex) => (prevIndex - 1 + comics.length) % comics.length); //prev comic
   };
 
   const currentComic = comics[currentIndex];

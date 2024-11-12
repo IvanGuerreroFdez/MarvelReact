@@ -10,7 +10,7 @@ const ts = new Date().getTime();
 const hash = md5(ts + privateKey + publicKey);
 
 function Info ({comicId, onFavoriteToggle, onBackToComics})  {
-  const [comic, setComic] = useState(null);
+  const [comic, setComic] = useState(null); //comic estado
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -20,7 +20,7 @@ function Info ({comicId, onFavoriteToggle, onBackToComics})  {
           `https://gateway.marvel.com/v1/public/comics/${comicId}?ts=${ts}&apikey=${publicKey}&hash=${hash}`
         );
 
-        setComic(response.data.data.results[0]);
+        setComic(response.data.data.results[0]); //set comic
       } 
       catch (error) {
         console.error("Informacion del comic no obtenida", error);
@@ -34,19 +34,28 @@ function Info ({comicId, onFavoriteToggle, onBackToComics})  {
 
   if (!comic) return <p className='cargando'>Cargando detalles, Por favor espere!</p>;
 
+  const { title, description, thumbnail, pageCount, prices, characters } = comic; //comic data
+  const price = prices.length > 0 ? `$${prices[0].price}` : "Precio no disponible";
+
   return (
     <div className="comic-info">
-      <h2 className="nombres">{comic.title}</h2>
+      <h2 className="nombres">{title}</h2>
 
-      <img src={`${comic.thumbnail.path}.${comic.thumbnail.extension}`} alt={comic.title} />
+      <img src={`${thumbnail.path}.${thumbnail.extension}`} alt={title} />
 
-      <p className='info'>{comic.description || "Descripción no disponible"}</p>
+      <p className='info'>{description || "Descripción no disponible"}</p>
+
+      <p className="info">
+        {pageCount ? `Número de páginas: ${pageCount}` : "Número de páginas no disponible"}
+      </p>
+
+      <p className='info'>Precio: {price || "Precio no disponible"}</p>
 
       <h3 className="personajes-gen">Personajes</h3>
 
       <div className="chars-list">
-        {comic.characters.items.length > 0 ? (
-          comic.characters.items.map((character, index) => (
+        {characters.items.length > 0 ? (
+          characters.items.map((character, index) => (
             <div key={index} className="char">
               <p className="personajes-det">{character.name}</p>
             </div>

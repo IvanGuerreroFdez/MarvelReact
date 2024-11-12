@@ -6,29 +6,34 @@ import Favoritos from './components/Favoritos';
 import './styles/Marvel.css';
 
 function App() {
-  const [comicId, setComicId] = useState(null);
-  const [displayFavorites, setDisplayFavorites] = useState(false);
+  const [comicId, setComicId] = useState(null); //id de los comics
+  const [displayFavorites, setDisplayFavorites] = useState(false);//favs si o no
 
   const handleAddToFavorites = (selectedComic) => {
-    const storedFavorites = JSON.parse(localStorage.getItem('favorites')) || [];
-    const isAlreadyFavorite = storedFavorites.find((favComic) => favComic.id === selectedComic.id);
+    const storedFavorites = JSON.parse(localStorage.getItem('favorites')) || []; //load favs
+    const isAlreadyFavorite = storedFavorites.find((favComic) => favComic.id === selectedComic.id); //es fav?
 
     if (!isAlreadyFavorite) {
       const updatedFavorites = [...storedFavorites, selectedComic];
       localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
     }
 
-    setDisplayFavorites(true);
+    setDisplayFavorites(true);//redirigir a favs
   };
 
   const handleShowFavorites = () => {
       setDisplayFavorites(true);
-      setComicId(null);
+      setComicId(null); //sin comic seleccionado
     };
 
   const handleShowComics = () => {
-    setDisplayFavorites(false);
+    setDisplayFavorites(false); //redirigir a comics
     setComicId(null);
+  };
+
+  const onComicSelect = (id) => {
+    setComicId(id); //id del comic seleccionado
+    setDisplayFavorites(false);
   };
 
   return (
@@ -39,7 +44,7 @@ function App() {
         {displayFavorites ? (
             <>
               <h2 className="favorites-title">Comics Favoritos</h2>
-              <Favoritos />
+              <Favoritos onComicSelect={onComicSelect}/>
             </>
           ) : comicId ? (
             <Info comicId={comicId} onFavoriteToggle={handleAddToFavorites} onBackToComics={handleShowComics} />

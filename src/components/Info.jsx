@@ -66,15 +66,15 @@ function Info ({comicId, onFavoriteToggle, onBackToComics})  {
 
       <img src={`${thumbnail.path}.${thumbnail.extension}`} alt={title} />
 
-      <p className='info'>{description || "Descripción no disponible"}</p>
+      <p className='info'>{description || "Descripcion no disponible"}</p>
 
       <p className="info">
-        {pageCount ? `Número de páginas: ${pageCount}` : "Número de páginas no disponible"}
+        {pageCount ? `Numero de paginas: ${pageCount}` : "Numero de paginas no disponible"}
       </p>
 
       <p className='info'>Precio: {price || "Precio no disponible"}</p>
 
-      <p className="info">Fecha de publicación: {formattedDate}</p>
+      <p className="info">Fecha de publicacion: {formattedDate}</p>
 
       <h3 className="personajes-gen">Personajes</h3>
 

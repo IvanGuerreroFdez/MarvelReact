@@ -53,12 +53,12 @@ function Comics ({onComicSelect})  {
       const date = new Date(comic.dates.find(d => d.type === 'onsaleDate')?.date).getFullYear(); //formato de fecha
       const characterNames = comic.characters.items.map(c => c.name.toLowerCase()); //filtrar personajes en minuscula
 
-      return (
+      return ( 
         (filters.price ? price <= parseFloat(filters.price) : true) &&
         (filters.pages ? pages >= parseInt(filters.pages) : true) &&
         (filters.date ? date === parseInt(filters.date) : true) &&
         (filters.character ? characterNames.includes(filters.character.toLowerCase()) : true)
-      );
+      ); //casting de strings a numeros para evitar problemas de formato de valores
     });
 
     setFilteredComics(filtered);
@@ -83,7 +83,7 @@ function Comics ({onComicSelect})  {
         <input className='filtro'
           type="number"
           name="price"
-          placeholder="Max Precio"
+          placeholder="Precio"
           value={filters.price}
           onChange={handleFilterChange}
         />
@@ -91,7 +91,7 @@ function Comics ({onComicSelect})  {
         <input className='filtro'
           type="number"
           name="pages"
-          placeholder="Min Paginas"
+          placeholder="Nº Paginas"
           value={filters.pages}
           onChange={handleFilterChange}
         />
@@ -101,7 +101,7 @@ function Comics ({onComicSelect})  {
         <input className='filtro'
           type="text"
           name="character"
-          placeholder="Nombre Personaje"
+          placeholder="Personajes"
           value={filters.character}
           onChange={handleFilterChange}
         />
@@ -109,7 +109,7 @@ function Comics ({onComicSelect})  {
         <input className='filtro'
           type="number"
           name="date"
-          placeholder="Año Publicación"
+          placeholder="Año de Publicacion"
           value={filters.date}
           onChange={handleFilterChange}
         />
@@ -125,13 +125,13 @@ function Comics ({onComicSelect})  {
           
           <h3 className="nombres">{currentComic.title}</h3>
           
-          <p className="info">Precio: ${currentComic.prices[0]?.price || "No disponible"}</p>
+          <p className="info">Precio: {currentComic.prices[0]?.price || "No disponible"}</p>
           
           <p className="info">
-            {currentComic.pageCount ? `Número de páginas: ${currentComic.pageCount}` : "Número de páginas no disponible"}
+            {currentComic.pageCount ? `Numero de paginas: ${currentComic.pageCount}` : "Numero de paginas no disponible"}
           </p>
 
-          <p className="info">Fecha de Publicación: {new Date(currentComic.dates.find(d => d.type === 'onsaleDate')?.date).toLocaleDateString() || "N/A"}</p>
+          <p className="info">Fecha de Publicacion: {new Date(currentComic.dates.find(d => d.type === 'onsaleDate')?.date).toLocaleDateString() || "N/A"}</p>
           
           <div className="comic-navigation">
             <button onClick={handlePrevious} className="boton">Prev</button>
